@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CNRA is an open-source cloud native readiness analyzer for Kubernetes teams." />
+    <title>CNRA — Cloud Native Readiness Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="CNRA home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>CNRA</span>
+        </a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#why-cnra">Why CNRA</a>
+          <a href="#principles">Principles</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#roadmap">Roadmap</a>
+        </nav>
+        <div class="header-actions">
+          <a class="text-link" href="#install">Read the docs <span>↗</span></a>
+          <button class="button button-dark button-small js-open-assessment" type="button">Start assessment <span>→</span></button>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </header>
+
+      <main id="top">
+        <section class="hero section-pad">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Cloud native control plane</div>
+            <h1>Know exactly how ready your stack is.</h1>
+            <p class="hero-lede">CNRA turns Kubernetes signals into a clear readiness score, evidence-backed findings, and a practical path to better engineering.</p>
+            <div class="hero-actions">
+              <button class="button button-orange js-open-assessment" type="button">Start your assessment <span>→</span></button>
+              <a class="button button-ghost" href="#how-it-works">See how it works <span>↓</span></a>
+            </div>
+            <div class="hero-meta">
+              <div class="avatar-stack" aria-hidden="true"><span>AK</span><span>JM</span><span>RS</span><span>+3k</span></div>
+              <p>Built for teams shipping on Kubernetes</p>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="CNRA readiness dashboard preview">
+            <div class="visual-orbit orbit-one"></div>
+            <div class="visual-orbit orbit-two"></div>
+            <div class="dashboard-window">
+              <div class="window-topbar"><span class="window-dots"><i></i><i></i><i></i></span><span>production / cnra</span><span class="window-live"><i></i> LIVE</span></div>
+              <div class="dashboard-content">
+                <div class="dashboard-heading"><div><span class="mini-label">Readiness overview</span><h2>Production cluster</h2></div><span class="status-pill">● Healthy</span></div>
+                <div class="score-row">
+                  <div class="score-ring"><div><strong>78</strong><span>/100</span></div></div>
+                  <div class="score-summary"><span class="mini-label">Cloud native score</span><p>Good foundation.<br />Room to harden.</p><div class="score-delta">↗ 12 pts this month</div></div>
+                </div>
+                <div class="dashboard-divider"></div>
+                <div class="dimension-grid">
+                  <div class="dimension"><div><span>Reliability</span><strong>65</strong></div><div class="metric-bar"><i style="width:65%"></i></div></div>
+                  <div class="dimension"><div><span>Observability</span><strong>75</strong></div><div class="metric-bar"><i style="width:75%"></i></div></div>
+                  <div class="dimension"><div><span>Security</span><strong>90</strong></div><div class="metric-bar"><i class="green" style="width:90%"></i></div></div>
+                  <div class="dimension"><div><span>Kubernetes</span><strong>85</strong></div><div class="metric-bar"><i style="width:85%"></i></div></div>
+                </div>
+                <div class="finding-card"><span class="finding-icon">!</span><div><span class="mini-label">High severity · CN-022</span><strong>Readiness probe missing</strong><small>payment-service / deployment.yaml</small></div><span class="finding-arrow">→</span></div>
+              </div>
+            </div>
+            <div class="floating-note note-top"><span class="note-icon">◒</span><div><small>Assessment complete</small><strong>12 services analyzed</strong></div></div>
+            <div class="floating-note note-bottom"><span class="note-icon note-green">✓</span><div><small>Read-only by default</small><strong>No write access required</strong></div></div>
+          </div>
+        </section>
+
+        <section class="signal-strip section-pad" aria-label="CNRA product attributes">
+          <span>OPEN SOURCE</span><span class="strip-line"></span><span>READ-ONLY BY DEFAULT</span><span class="strip-line"></span><span>BUILT FOR KUBERNETES</span><span class="strip-line"></span><span>RULE-DRIVEN</span>
+        </section>
+
+        <section class="split-section section-pad" id="why-cnra">
+          <div class="section-intro"><div class="eyebrow"><span class="eyebrow-dot"></span> From signals to certainty</div><h2>Make cloud-native maturity visible.</h2></div>
+          <div class="section-body"><p>Cloud-native principles are easy to agree with—and surprisingly hard to measure. CNRA gives your team a shared language for what’s working, what’s risky, and what to improve next.</p><a class="arrow-link" href="#principles">Explore the model <span>↗</span></a></div>
+        </section>
+
+        <section class="principles-section section-pad" id="principles">
+          <div class="section-kicker"><span>01</span><span>THE READINESS MODEL</span><span class="kicker-line"></span><span>10 PRINCIPLES</span></div>
+          <div class="principles-layout">
+            <div><h2>Ten principles.<br /><em>One clear signal.</em></h2><p>Every score is grounded in observable evidence from the way your workloads are configured and run.</p><a class="arrow-link" href="#install">Install in your cluster <span>→</span></a></div>
+            <div class="principle-grid">
+              <div class="principle-card"><span>CN—001</span><strong>Design for<br />failure</strong><b>↗</b></div>
+              <div class="principle-card"><span>CN—002</span><strong>Stateless<br />services</strong><b>↗</b></div>
+              <div class="principle-card principle-card-dark"><span>CN—005</span><strong>Operational<br />observability</strong><b>↗</b></div>
+              <div class="principle-card"><span>CN—008</span><strong>Immutable<br />deployment</strong><b>↗</b></div>
+              <div class="principle-card principle-card-accent"><span>CN—009</span><strong>Security by<br />default</strong><b>↗</b></div>
+              <div class="principle-card"><span>CN—010</span><strong>Operational<br />simplicity</strong><b>↗</b></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="workflow-section section-pad" id="how-it-works">
+          <div class="section-kicker"><span>02</span><span>HOW IT WORKS</span><span class="kicker-line"></span><span>THREE STEPS</span></div>
+          <div class="workflow-heading"><h2>From cluster to clarity<br /><em>in minutes.</em></h2><p>Run CNRA where your workloads live. It reads the signals, applies transparent rules, and gives your team the context to act.</p></div>
+          <div class="steps-grid">
+            <article class="step-card"><div class="step-top"><span>01</span><span class="step-icon">⌘</span></div><h3>Connect your cluster</h3><p>Install the CNRA controller with a single Helm command. Read-only access is all you need.</p><div class="terminal-mini"><span>$</span> helm install cnra<br /><i>  cnra/cloud-native-analyzer</i></div></article>
+            <article class="step-card step-card-active"><div class="step-top"><span>02</span><span class="step-icon">◌</span></div><h3>Scan the signals</h3><p>CNRA inspects resources, applies your rule catalogue, and captures the evidence behind every result.</p><div class="scan-graphic"><span class="scan-pulse"></span><span class="scan-line"></span><small>SCANNING 12 SERVICES</small></div></article>
+            <article class="step-card"><div class="step-top"><span>03</span><span class="step-icon">↗</span></div><h3>Improve with confidence</h3><p>Share one score, prioritize the highest-impact findings, and track your progress over time.</p><div class="trend-mini"><span>64</span><span>71</span><span>78</span><i></i></div></article>
+          </div>
+        </section>
+
+        <section class="install-section section-pad" id="install">
+          <div class="install-panel"><div><div class="eyebrow eyebrow-light"><span class="eyebrow-dot"></span> Ready when you are</div><h2>Bring a little more<br /><em>signal to your stack.</em></h2><p>Start with your Kubernetes resources today. Expand into runtime intelligence and Java application analysis as your practice grows.</p></div><div class="install-cta"><div class="install-command"><span>$</span><code>helm repo add cnra https://cnra.io/charts</code><button class="copy-button" type="button" aria-label="Copy install command">□</button></div><button class="button button-orange js-open-assessment" type="button">Start your assessment <span>→</span></button><span class="install-note">No credit card · Open source core · Read-only</span></div></div>
+        </section>
+
+        <section class="roadmap-section section-pad" id="roadmap">
+          <div class="section-kicker"><span>03</span><span>THE ROAD AHEAD</span><span class="kicker-line"></span><span>OPEN ENDED BY DESIGN</span></div>
+          <div class="roadmap-heading"><h2>Start with Kubernetes.<br /><em>Grow into intelligence.</em></h2><p>CNRA gets more useful as your engineering signals get richer. The roadmap is designed to meet your team where it is.</p></div>
+          <div class="roadmap-line"><div class="roadmap-item roadmap-done"><span class="roadmap-dot">✓</span><div><span>NOW · PHASE 1</span><strong>Kubernetes analyzer</strong><p>Scores resources, surfaces violations, and explains the evidence.</p></div></div><div class="roadmap-item"><span class="roadmap-dot">02</span><div><span>NEXT · PHASE 2</span><strong>Java static analyzer</strong><p>Finds risky patterns across your application structure.</p></div></div><div class="roadmap-item"><span class="roadmap-dot">03</span><div><span>THEN · PHASE 3</span><strong>Runtime intelligence</strong><p>Connects Prometheus, Grafana, and OpenTelemetry signals.</p></div></div><div class="roadmap-item"><span class="roadmap-dot">04</span><div><span>FUTURE · PHASE 4</span><strong>AI recommendations</strong><p>Turns findings into a tailored engineering improvement plan.</p></div></div></div>
+        </section>
+      </main>
+
+      <footer class="site-footer section-pad"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>CNRA</span></a><span>Cloud native readiness, made visible.</span><div><a href="#principles">Principles</a><a href="#install">Install</a><a href="#top">Back to top ↑</a></div></footer>
+    </div>
+
+    <div class="modal-backdrop" id="assessmentModal" hidden>
+      <div class="assessment-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" aria-label="Close assessment dialog">×</button>
+        <div class="modal-visual"><div class="modal-grid"></div><div class="modal-score"><span>CNRA</span><strong>78</strong><small>readiness score</small></div></div>
+        <div class="modal-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> Start an assessment</div><h2 id="modalTitle">See your cluster<br /><em>more clearly.</em></h2><p>Tell us where to send your first report. We’ll start with a read-only Kubernetes scan.</p><form id="assessmentForm"><label>Email address<input required type="email" placeholder="you@company.com" /></label><button class="button button-orange" type="submit">Run a sample assessment <span>→</span></button></form><small class="modal-footnote">This is a demo flow. No cluster connection is made.</small></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
