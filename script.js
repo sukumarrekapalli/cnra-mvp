@@ -51,3 +51,12 @@ copyButton.addEventListener('click', async () => {
   copyButton.textContent = '✓';
   setTimeout(() => { copyButton.textContent = '□'; }, 1600);
 });
+
+document.querySelectorAll('.docs-copy').forEach((button) => {
+  button.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(button.dataset.copy); } catch (_) { /* Clipboard may be unavailable in local previews. */ }
+    const original = button.textContent;
+    button.textContent = 'Copied';
+    setTimeout(() => { button.textContent = original; }, 1600);
+  });
+});
