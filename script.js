@@ -1,0 +1,53 @@
+const header = document.querySelector('.site-header');
+const menuToggle = document.querySelector('.menu-toggle');
+const modal = document.querySelector('#assessmentModal');
+const closeButton = document.querySelector('.modal-close');
+const openButtons = document.querySelectorAll('.js-open-assessment');
+const form = document.querySelector('#assessmentForm');
+const copyButton = document.querySelector('.copy-button');
+
+function openModal() {
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  window.setTimeout(() => modal.querySelector('input')?.focus(), 80);
+}
+
+function closeModal() {
+  modal.hidden = true;
+  document.body.style.overflow = '';
+}
+
+openButtons.forEach((button) => button.addEventListener('click', openModal));
+closeButton.addEventListener('click', closeModal);
+modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !modal.hidden) closeModal(); });
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = header.classList.toggle('nav-open');
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+document.querySelectorAll('.desktop-nav a').forEach((link) => link.addEventListener('click', () => {
+  header.classList.remove('nav-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+}));
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const button = form.querySelector('button');
+  button.innerHTML = 'Assessment queued <span>✓</span>';
+  button.style.background = '#102e2b';
+  form.querySelector('input').disabled = true;
+  setTimeout(() => {
+    if (!document.querySelector('.success-message')) {
+      form.parentElement.insertAdjacentHTML('afterend', '<p class="success-message">Your sample report is on its way. Welcome to clearer signals.</p>');
+    }
+  }, 350);
+});
+
+copyButton.addEventListener('click', async () => {
+  const command = 'helm upgrade --install cnra oci://registry-1.docker.io/sukumar9/cnra-mvp --version 0.2.4 --namespace cnra-system --create-namespace';
+  try { await navigator.clipboard.writeText(command); } catch (_) { /* Clipboard may be unavailable in local previews. */ }
+  copyButton.textContent = '✓';
+  setTimeout(() => { copyButton.textContent = '□'; }, 1600);
+});

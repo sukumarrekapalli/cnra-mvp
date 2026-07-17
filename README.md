@@ -17,16 +17,16 @@ The result is a 0–100 score, dimension scores, expandable evidence-backed find
 
 ## Install with Helm
 
-The chart is versioned at `0.2.3` and lives in `chart/cnra-mvp`.
-The container image is published separately as `sukumar9/cnra-mvp-image:0.2.3`:
+The chart is versioned at `0.2.4` and lives in `chart/cnra-mvp`.
+The container image is published separately as `sukumar9/cnra-mvp-image:0.2.4`:
 
 ```bash
 docker buildx build --no-cache --platform linux/amd64 \
-  -t sukumar9/cnra-mvp-image:0.2.3 --push ./cnra-mvp
+  -t sukumar9/cnra-mvp-image:0.2.4 --push ./cnra-mvp
 
 helm package cnra-mvp/chart/cnra-mvp
 helm registry login registry-1.docker.io -u sukumar9
-helm push cnra-mvp-0.2.3.tgz oci://registry-1.docker.io/sukumar9
+helm push cnra-mvp-0.2.4.tgz oci://registry-1.docker.io/sukumar9
 ```
 
 ```bash

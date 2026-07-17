@@ -58,7 +58,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: cnra-mvp
-          image: sukumar9/cnra-mvp-image:0.2.2
+          image: sukumar9/cnra-mvp-image:0.2.4
           imagePullPolicy: IfNotPresent
           env:
             - name: CNRA_NAMESPACE

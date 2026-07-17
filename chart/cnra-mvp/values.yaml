@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: sukumar9/cnra-mvp-image
   pullPolicy: IfNotPresent
-  tag: "0.2.3"
+  tag: "0.2.4"
 
 imagePullSecrets: []
 nameOverride: ""
