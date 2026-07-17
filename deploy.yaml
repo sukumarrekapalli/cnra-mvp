@@ -51,11 +51,14 @@ spec:
       serviceAccountName: cnra-mvp
       securityContext:
         runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
         seccompProfile:
           type: RuntimeDefault
       containers:
         - name: cnra-mvp
-          image: sukumar9/cnra-mvp:0.1.0
+          image: sukumar9/cnra-mvp-image:0.2.2
           imagePullPolicy: IfNotPresent
           env:
             - name: CNRA_NAMESPACE

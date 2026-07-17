@@ -1,0 +1,27 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "cnra-mvp.fullname" . }}
+  labels:
+    {{- include "cnra-mvp.labels" . | nindent 4 }}
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "cnra-mvp.fullname" . }}
+  labels:
+    {{- include "cnra-mvp.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "cnra-mvp.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "cnra-mvp.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+{{- end }}

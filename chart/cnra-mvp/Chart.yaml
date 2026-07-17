@@ -1,0 +1,14 @@
+apiVersion: v2
+name: cnra-mvp
+description: A tiny, read-only Kubernetes cloud-native readiness analyzer
+type: application
+version: 0.2.3
+appVersion: "0.2.3"
+home: https://cnra.io
+keywords:
+  - kubernetes
+  - cloud-native
+  - readiness
+  - security
+maintainers:
+  - name: CNRA
