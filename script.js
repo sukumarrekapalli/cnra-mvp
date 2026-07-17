@@ -34,15 +34,11 @@ document.querySelectorAll('.desktop-nav a').forEach((link) => link.addEventListe
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const button = form.querySelector('button');
-  button.innerHTML = 'Assessment queued <span>✓</span>';
-  button.style.background = '#102e2b';
-  form.querySelector('input').disabled = true;
-  setTimeout(() => {
-    if (!document.querySelector('.success-message')) {
-      form.parentElement.insertAdjacentHTML('afterend', '<p class="success-message">Your sample report is on its way. Welcome to clearer signals.</p>');
-    }
-  }, 350);
+  const email = form.querySelector('input[type="email"]').value.trim();
+  const context = document.querySelector('#assessmentContext')?.value.trim() || 'No additional context provided.';
+  const subject = 'CNRA beta assessment request';
+  const body = `Hi Sukumar,\n\nI would like to request a CNRA cloud-native readiness assessment.\n\nMy email: ${email}\nAdditional context: ${context}\n\nThank you.`;
+  window.location.href = `mailto:sukumar.sachin09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 
 copyButton.addEventListener('click', async () => {

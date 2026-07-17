@@ -1,8 +1,12 @@
 # CNRA MVP
 
+Source: https://github.com/sukumarrekapalli/cnra-mvp
+
+Status: private beta · License: Apache-2.0
+
 This is a deliberately small, read-only Cloud Native Readiness Analyzer demo.
 
-It scans Kubernetes `Deployments` and evaluates seven rules:
+It scans Kubernetes `Deployments` and evaluates 27 rules:
 
 - CN-022 readiness probe
 - CN-023 liveness probe
@@ -22,25 +26,25 @@ The container image is published separately as `sukumar9/cnra-mvp-image:0.2.4`:
 
 ```bash
 docker buildx build --no-cache --platform linux/amd64 \
-  -t sukumar9/cnra-mvp-image:0.2.4 --push ./cnra-mvp
+  -t sukumar9/cnra-mvp-image:0.2.4 --push .
 
-helm package cnra-mvp/chart/cnra-mvp
+helm package chart/cnra-mvp
 helm registry login registry-1.docker.io -u sukumar9
 helm push cnra-mvp-0.2.4.tgz oci://registry-1.docker.io/sukumar9
 ```
 
 ```bash
-helm upgrade --install cnra ./cnra-mvp/chart/cnra-mvp \
+helm upgrade --install cnra ./chart/cnra-mvp \
   --namespace cnra-system \
   --create-namespace \
   --set image.repository=sukumar9/cnra-mvp-image \
-  --set image.tag=0.2.2
+  --set image.tag=0.2.4
 ```
 
 To scan one namespace instead of the whole cluster:
 
 ```bash
-helm upgrade cnra ./cnra-mvp/chart/cnra-mvp \
+helm upgrade cnra ./chart/cnra-mvp \
   --namespace cnra-system \
   --set scan.namespace=my-namespace
 ```
@@ -53,19 +57,39 @@ kubectl -n cnra-system port-forward svc/cnra-cnra-mvp 8080:80
 
 The chart grants only `get`, `list`, and `watch` on `deployments.apps`.
 
+## Build and install from source
+
+Clone the repository, build an image for the architecture of your cluster, push it to a registry, then install the chart from the cloned source:
+
+```bash
+git clone https://github.com/sukumarrekapalli/cnra-mvp.git
+cd cnra-mvp
+helm lint chart/cnra-mvp
+docker buildx build --platform linux/amd64 \
+  -t sukumar9/cnra-mvp-image:source-0.2.4 \
+  --push .
+helm upgrade --install cnra ./chart/cnra-mvp \
+  --namespace cnra-system \
+  --create-namespace \
+  --set image.repository=sukumar9/cnra-mvp-image \
+  --set image.tag=source-0.2.4
+```
+
+On an AMD64 Linux node, regular `docker build` is sufficient. On Apple Silicon, keep `--platform linux/amd64` for an AMD64 cluster.
+
 ## Run it in a cluster
 
 Build and push the tiny image to a registry your cluster can pull from:
 
 ```bash
-docker build -t YOUR_REGISTRY/cnra-mvp:0.1.0 ./cnra-mvp
+docker build -t YOUR_REGISTRY/cnra-mvp:0.1.0 .
 docker push YOUR_REGISTRY/cnra-mvp:0.1.0
 ```
 
 Replace `YOUR_REGISTRY/cnra-mvp:0.1.0` in `deploy.yaml`, then install:
 
 ```bash
-kubectl apply -f cnra-mvp/deploy.yaml
+kubectl apply -f deploy.yaml
 kubectl -n cnra-system port-forward svc/cnra-mvp 8080:80
 ```
 
